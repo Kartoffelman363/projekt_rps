@@ -1,6 +1,5 @@
 <?php
 include_once('include/header.php');
-include_once('include/footer.php');
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +13,11 @@ include_once('include/footer.php');
 <body>
     <div class="homePage">
         <p>a simple and modern solution to a to-do list</p>
-        <a href="/RazvojProgramskihSistemov/register.php">REGISTRACIJA</a>
+        <a href="register.php">REGISTRACIJA</a>
     </div>
 </body>
 </html>
+
+<?php
+include_once('include/footer.php');
+?>

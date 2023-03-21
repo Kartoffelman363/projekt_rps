@@ -8,30 +8,30 @@
 	$_SESSION['LAST_ACTIVITY'] = time();
 	
 	//Poveži se z bazo
-	$conn = new mysqli('localhost', 'root', '', 'vaja1');
+	$conn = new mysqli('localhost', 'root', '', 'todolist');
 	//Nastavi kodiranje znakov, ki se uporablja pri komunikaciji z bazo
 	$conn->set_charset("UTF8");
 ?>
 <html>
 <head>
-    <link rel="stylesheet" href="/RazvojProgramskihSistemov/public/css/style.css">
+    <link rel="stylesheet" href="public/css/style.css">
 	<title>TO-DO app</title>
 </head>
 <body>
 	<nav class="navigationBar">
     <h1 id="todoTitle">TO-DO LIST</h1>
 		<ul>
-			<li><a href="/RazvojProgramskihSistemov/index.php">DOMOV</a></li>
+			<li><a href="index.php">DOMOV</a></li>
 			<?php
 			if(isset($_SESSION["USER_ID"])){
 				?>
 				<li><a href="publish.php"></a></li>
-				<li><a href="/RazvojProgramskihSistemov/user/logout.php">ODJAVA</a></li>
+				<li><a href="user/logout.php">ODJAVA</a></li>
 				<?php
 			} else{
 				?>
-				<li><a href="/RazvojProgramskihSistemov/login.php">PRIJAVA</a></li>
-				<li><a href="/RazvojProgramskihSistemov/register.php">REGISTRACIJA</a></li>
+				<li><a href="login.php">PRIJAVA</a></li>
+				<li><a href="register.php">REGISTRACIJA</a></li>
 				<?php
 			}
 			?>
