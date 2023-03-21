@@ -1,18 +1,39 @@
-<?php session_start(); ?>
-
-<!DOCTYPE html>
-<html lang="en">
+<?php
+	session_start();
+	
+	//Seja poteče po 30 minutah - avtomatsko odjavi neaktivnega uporabnika
+	if(isset($_SESSION['LAST_ACTIVITY']) && time() - $_SESSION['LAST_ACTIVITY'] < 1800){
+		session_regenerate_id(true);
+	}
+	$_SESSION['LAST_ACTIVITY'] = time();
+	
+	//Poveži se z bazo
+	$conn = new mysqli('localhost', 'root', '', 'vaja1');
+	//Nastavi kodiranje znakov, ki se uporablja pri komunikaciji z bazo
+	$conn->set_charset("UTF8");
+?>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ToDoList">
-    <meta name="keywords" content="ToDoList">
-    <meta name="author" content="ekipa">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="public/css/style.css">
-    <title>ToDoList</title>
+    <link rel="stylesheet" href="/RazvojProgramskihSistemov/public/css/style.css">
+	<title>TO-DO app</title>
 </head>
 <body>
-    <nav>
-        
-    </nav>
+	<nav class="navigationBar">
+    <h1 id="todoTitle">TO-DO LIST</h1>
+		<ul>
+			<li><a href="/RazvojProgramskihSistemov/index.php">DOMOV</a></li>
+			<?php
+			if(isset($_SESSION["USER_ID"])){
+				?>
+				<li><a href="publish.php"></a></li>
+				<li><a href="/RazvojProgramskihSistemov/user/logout.php">ODJAVA</a></li>
+				<?php
+			} else{
+				?>
+				<li><a href="/RazvojProgramskihSistemov/login.php">PRIJAVA</a></li>
+				<li><a href="/RazvojProgramskihSistemov/register.php">REGISTRACIJA</a></li>
+				<?php
+			}
+			?>
+		</ul>
+	</nav>
